@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Moedas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body class="container py-5">
+    <h1 class="text-center mb-4">Conversor de Moedas</h1>
+
+    <form method="POST" class="col-md-6 mx-auto">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="from_currency">De:</label>
+            <input type="text" name="from_currency" id="from_currency" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="to_currency">Para:</label>
+            <input type="text" name="to_currency" id="to_currency" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="amount">Valor:</label>
+            <input type="number" name="amount" id="amount" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Converter</button>
+    </form>
+
+    {% if converted_amount %}
+        <h2 class="text-center mt-4">Resultado:</h2>
+        <p class="text-center">{{ amount }} {{ from_currency }} é equivalente a {{ converted_amount|floatformat:2 }} {{ to_currency }}</p>
+    {% elif error %}
+        <p class="text-center text-danger">{{ error }}</p>
+    {% endif %}
+</body>
+<footer class="text-center mt-5">
+    <p>&copy; 2025 Made By Moraes</p>
+</footer>
+
+</html>
